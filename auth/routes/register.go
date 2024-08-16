@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"antar-jemput/auth/models"
+	"antar-jemput/models"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"

@@ -1,8 +1,8 @@
 package auth_test
 
 import (
-	"antar-jemput/auth/models"
 	"antar-jemput/auth/routes"
+	"antar-jemput/models"
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

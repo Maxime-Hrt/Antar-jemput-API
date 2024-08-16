@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"antar-jemput/auth/models"
+	"antar-jemput/models"
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -36,5 +36,11 @@ func LoginUser(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, map[string]string{"message": "Invalid email or password"})
 	}
 
-	return c.JSON(http.StatusOK, map[string]string{"message": "Login Successful"})
+	// Return the user information
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"id":    user.ID,
+		"name":  user.Name,
+		"email": user.Email,
+		"phone": user.Phone,
+	})
 }
