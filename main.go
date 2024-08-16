@@ -2,6 +2,7 @@ package main
 
 import (
 	"antar-jemput/auth"
+	"antar-jemput/bus"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/postgres"
@@ -38,7 +39,8 @@ func main() {
 		}
 	})
 
-	auth.RegisterAuthRoutes(e)
+	auth.RoutesAuth(e)
+	bus.RoutesBus(e)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
