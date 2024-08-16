@@ -9,6 +9,15 @@ import (
 	"log"
 )
 
+// CustomValidator est un wrapper pour le package de validation
+type CustomValidator struct {
+	validator *validator.Validate
+}
+
+func (cv *CustomValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
+}
+
 func main() {
 	e := echo.New()
 
@@ -32,13 +41,4 @@ func main() {
 	auth.RegisterAuthRoutes(e)
 
 	e.Logger.Fatal(e.Start(":1323"))
-}
-
-// CustomValidator est un wrapper pour le package de validation
-type CustomValidator struct {
-	validator *validator.Validate
-}
-
-func (cv *CustomValidator) Validate(i interface{}) error {
-	return cv.validator.Struct(i)
 }

@@ -13,7 +13,7 @@ type LoginRequest struct {
 	Password string `json:"password" validate:"required"`
 }
 
-func Login(c echo.Context) error {
+func LoginUser(c echo.Context) error {
 	req := new(LoginRequest)
 	if err := c.Bind(req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"message": "Invalid request"})

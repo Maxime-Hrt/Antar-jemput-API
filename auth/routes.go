@@ -8,5 +8,6 @@ import (
 func RegisterAuthRoutes(e *echo.Echo) {
 	authGroup := e.Group("/auth")
 	authGroup.POST("/register", routes.RegisterUser)
-	authGroup.POST("/login", routes.Login)
+	authGroup.POST("/login", routes.LoginUser)
+	authGroup.DELETE("/delete/:id", routes.DeleteUser)
 }
