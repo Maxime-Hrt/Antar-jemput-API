@@ -12,7 +12,7 @@ func GetBusRoute(c echo.Context) error {
 	db := c.Get("db").(*gorm.DB)
 
 	var bus models.Bus
-	if err := db.Where("id = ?", id).First(&bus).Error; err != nil {
+	if err := db.Preload("Owner").Where("id = ?", id).First(&bus).Error; err != nil {
 		return c.JSON(http.StatusNotFound, map[string]string{"message": "Bus not found"})
 	}
 	return c.JSON(http.StatusOK, bus)
@@ -22,7 +22,7 @@ func GetBusRoutes(c echo.Context) error {
 	db := c.Get("db").(*gorm.DB)
 
 	var buses []models.Bus
-	if err := db.Find(&buses).Error; err != nil {
+	if err := db.Preload("Owner").Find(&buses).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to get buses"})
 	}
 	return c.JSON(http.StatusOK, buses)
@@ -38,7 +38,7 @@ func GetBusRoutesByOwner(c echo.Context) error {
 	db := c.Get("db").(*gorm.DB)
 
 	var buses []models.Bus
-	if err := db.Where("owner_id = ?", ownerID).Find(&buses).Error; err != nil {
+	if err := db.Preload("Owner").Where("owner_id = ?", ownerID).Find(&buses).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to get buses"})
 	}
 

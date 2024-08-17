@@ -1,0 +1,55 @@
+POST http://localhost:1323/bus/create
+Content-Type: application/json
+
+{
+  "license_plate": "EF-123-GH",
+  "seat_plan": [
+    ["1A", "1B", "1C", "1D", "1E"],
+    ["2A", "2B", "2C"],
+    ["3A", "3B", "3C", "3D"],
+    ["4A", "4B"],
+    ["5A", "5B", "5C", "5D", "5E", "5F"]
+  ],
+  "owner_id": 3,
+  "bus_model": "Mercedes Sprinter",
+  "capacity": 20,
+  "manufacturer": "Mercedes-Benz",
+  "year_of_production": 2023
+}
+
+###
+
+GET http://localhost:1323/bus/get/6
+
+###
+
+GET http://localhost:1323/bus/get
+
+###
+
+GET http://localhost:1323/bus/get/owner/3
+
+###
+
+PUT http://localhost:1323/bus/update/6
+Content-Type: application/json
+
+{
+  "license_plate": "KA-918-ML",
+  "seat_plan": [
+    ["1A", "1B", "1C", "1D", "1E"],
+    ["2A", "2B", "2C"],
+    ["3A", "3B", "3C", "3D"],
+    ["4A", "4B"],
+    ["5A", "5B", "5C", "5D", "5E", "5F"]
+  ],
+  "owner_id": 3,
+  "bus_model": "Mercedes Sprinter",
+  "capacity": 20,
+  "manufacturer": "Mercedes-Benz",
+  "year_of_production": 2023
+}
+
+###
+
+DELETE http://localhost:1323/bus/delete/7
