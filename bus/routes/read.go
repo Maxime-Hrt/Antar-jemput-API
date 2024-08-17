@@ -27,3 +27,24 @@ func GetBusRoutes(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, buses)
 }
+
+func GetBusRoutesByOwner(c echo.Context) error {
+	ownerID := c.Param("owner_id")
+
+	if ownerID == "" {
+		return c.JSON(http.StatusBadRequest, map[string]string{"message": "Owner ID is required"})
+	}
+
+	db := c.Get("db").(*gorm.DB)
+
+	var buses []models.Bus
+	if err := db.Where("owner_id = ?", ownerID).Find(&buses).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to get buses"})
+	}
+
+	if len(buses) == 0 {
+		return c.JSON(http.StatusNotFound, map[string]string{"message": "No bus found"})
+	}
+
+	return c.JSON(http.StatusOK, buses)
+}

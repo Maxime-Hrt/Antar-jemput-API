@@ -2,6 +2,7 @@ package routes
 
 import (
 	"antar-jemput/models"
+	"fmt"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"
@@ -11,7 +12,7 @@ type CreateBusRouteRequest struct {
 	LicensePlate     string          `json:"license_plate" validate:"required"`
 	SeatPlan         models.SeatPlan `json:"seat_plan" validate:"required"`
 	OwnerID          uint            `json:"owner_id" validate:"required"`
-	BusModel         string          `json:"model" validate:"required"`
+	BusModel         string          `json:"bus_model" validate:"required"`
 	Capacity         int             `json:"capacity" validate:"required"`
 	Manufacturer     string          `json:"manufacturer"`
 	YearOfProduction int             `json:"year_of_production"`
@@ -19,6 +20,10 @@ type CreateBusRouteRequest struct {
 
 func CreateBusRoute(c echo.Context) error {
 	req := new(CreateBusRouteRequest)
+
+	// Display the request
+	fmt.Println(req)
+
 	if err := c.Bind(req); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"message": "Invalid request"})
 	}

@@ -10,6 +10,7 @@ func RoutesBus(e *echo.Echo) {
 	busGroup.POST("/create", routes.CreateBusRoute)
 	busGroup.GET("/get/:id", routes.GetBusRoute)
 	busGroup.GET("/get", routes.GetBusRoutes)
+	busGroup.GET("/get/owner/:owner_id", routes.GetBusRoutesByOwner)
 	//busGroup.PUT("/update/:id", routes.UpdateBusRoute)
 	//busGroup.DELETE("/delete/:id", routes.DeleteBusRoute)
 }
